@@ -137,4 +137,5 @@ menu_bar.add_cascade(label="About", command=about)
 root.config(menu=menu_bar)
 
 updateloop()
+import_tasks() # this needs to be fixed as if the file is not there it doesnt load the app
 root.mainloop()
