@@ -73,6 +73,8 @@ def add_task_to_list():
     task = text_box.get() # Store input
     if len(tasks) >= 15:  # Limit of 15 tasks
         return
+    if len(task) > 27:    # Limit of 27 characters for task name
+        return
     tasks.append(task) # Add to list
     text_box.delete(0, 'end') # Clear box after user inputs, test this more
     updateloop() # Run main loop to add it to the
