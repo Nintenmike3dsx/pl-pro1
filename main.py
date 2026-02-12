@@ -17,8 +17,11 @@ taskdone = []
 task_location = tk.Frame(root)
 task_location.place(x=0, y=25)
 
-def sound():
+def sound_check():
     winsound.PlaySound('yay.wav', winsound.SND_ASYNC)
+
+def sound_delete():
+    winsound.PlaySound('gone.wav', winsound.SND_ASYNC)
 
 def updateloop():
     for widget in task_location.winfo_children():
@@ -34,7 +37,7 @@ def updateloop():
         # Left side - checkbox
         var = tk.IntVar()
         taskdone.append(var)
-        checkbox = tk.Checkbutton(task_row, variable=var, command=sound)
+        checkbox = tk.Checkbutton(task_row, variable=var, command=sound_check)
         checkbox.pack(side="left")
         
         # Middle - label
@@ -46,6 +49,7 @@ def updateloop():
         delete_button.pack(side="right", padx=(0, 10))
 # Removes the task and re-runs the main updateloop 
 def delete_task(index):
+    sound_delete()
     tasks.pop(index)
     updateloop()
     # Buggggg - this removes any tasks that were currently checked as it loops everything, look into a solution later

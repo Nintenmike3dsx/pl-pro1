@@ -10,7 +10,9 @@ Making check/delete boxes in tkinter: https://www.geeksforgeeks.org/python/pytho
 
 File writing in python: https://www.w3schools.com/python/python_file_write.asp
 
-Button Audio: https://stackoverflow.com/questions/28795859/how-can-i-play-a-sound-when-a-tkinter-button-is-pushed
+Button Audio: https://docs.python.org/3/library/winsound.html
+
+Audio Source: https://www.myinstants.com/en/instant/yippee-tbh-93589/
 
 
 
