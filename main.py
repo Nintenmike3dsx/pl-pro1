@@ -114,19 +114,19 @@ def load_tasks():
         pass
     # this is really simple, may want to add a file check prompt to user
 
+# Optional Enhancement 5 - Data Clearing, will delete any existing tasks.txt
 def clear_data():
     if os.path.exists("tasks.txt"):
-     os.remove("tasks.txt")
+       os.remove("tasks.txt")
     else:
         pass
-
 
 def about():
     about_window = tk.Toplevel(root)
     about_window.title("About!")
     about_window.geometry("250x100")
     about_window.resizable(False, False)
-    about_text = "Created by Michael Arend\nLibraries Used: Tkinter\nSources in README\nAudio from myinstants.com"
+    about_text = "Created by Michael Arend\nLibraries Used: Tkinter\nSources in README\nAudio From myinstants.com"
     about_label = tk.Label(about_window, text=about_text, padx=10, pady=10, font=("Helvetica", 10))
     about_label.pack()
 
@@ -144,7 +144,6 @@ def exit_window():
 def exit_app():
     root.destroy()
     
-
 menu_bar = tk.Menu(root)
 
 add_task_button = tk.Button(root, text="Add Task", command=addtask, bg="SystemButtonFace")

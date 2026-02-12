@@ -12,5 +12,7 @@ File writing in python: https://www.w3schools.com/python/python_file_write.asp
 
 Button Audio: https://docs.python.org/3/library/winsound.html
 
+OS data editing: https://www.w3schools.com/python/python_file_remove.asp
+
 
 
