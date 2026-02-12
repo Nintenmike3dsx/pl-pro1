@@ -2,10 +2,11 @@
 import tkinter as tk
 import keyboard
 import os 
+import winsound
 
 root = tk.Tk()
 root.title("To-Do List")
-canvas = tk.Canvas(root, width=600, height=500) # Change if needed
+canvas = tk.Canvas(root, width=300, height=500) # Change if needed
 canvas.pack()
 
 font_size = 11
@@ -15,6 +16,9 @@ taskdone = []
 
 task_location = tk.Frame(root)
 task_location.place(x=0, y=25)
+
+def sound():
+    winsound.PlaySound('yay.wav', winsound.SND_ASYNC)
 
 def updateloop():
     for widget in task_location.winfo_children():
@@ -30,7 +34,7 @@ def updateloop():
         # Left side - checkbox
         var = tk.IntVar()
         taskdone.append(var)
-        checkbox = tk.Checkbutton(task_row, variable=var)
+        checkbox = tk.Checkbutton(task_row, variable=var, command=sound)
         checkbox.pack(side="left")
         
         # Middle - label
@@ -85,7 +89,7 @@ def about():
     about_window.title("About!")
     about_window.geometry("250x100")
     about_window.resizable(False, False)
-    about_text = "Created by Michael Arend\nLibraries Used: Tkinter"
+    about_text = "Created by Michael Arend\nLibraries Used: Tkinter\nSources in README"
     about_label = tk.Label(about_window, text=about_text, padx=10, pady=10, font=("Helvetica", 10))
     about_label.pack()
 
@@ -106,6 +110,7 @@ buttoncolor(add_task_button, "#FEEB3F", "SystemButtonFace")
 
 export_button = tk.Button(root, text="Export Tasks", command=export_tasks, bg="SystemButtonFace")
 export_button.place(x=85, y=0)
+buttoncolor(export_button, "#FE3F3F", "SystemButtonFace")
 
 about_menu = tk.Menu(menu_bar, tearoff=0)
 about_menu.add_command(label="About", command=about)
