@@ -115,9 +115,21 @@ def about():
     about_window.title("About!")
     about_window.geometry("250x100")
     about_window.resizable(False, False)
-    about_text = "Created by Michael Arend\nLibraries Used: Tkinter\nSources in README"
+    about_text = "Created by Michael Arend\nLibraries Used: Tkinter\nSources in README\nAudio from myinstants.com"
     about_label = tk.Label(about_window, text=about_text, padx=10, pady=10, font=("Helvetica", 10))
     about_label.pack()
+
+def exit_window():
+    global text_box
+    text_window = tk.Toplevel(root)
+    text_window.title("Are You Sure You Want to Close?")
+    text_window.geometry("200x100")
+    
+    label = tk.Label(text_window, text="Save Your Tasks Before Exiting!", font=("Helvetica", 10))
+    label.pack(pady=10)
+    close_button = tk.Button(text_window, text="Close Application", command=exit_app)
+    close_button.pack(pady=10)
+
 
 def exit_app():
     root.destroy()
@@ -137,7 +149,7 @@ import_button.place(x=224, y=0)
 buttoncolor(import_button, "#FE3FE8", "SystemButtonFace")
 
 # Top menu bar
-menu_bar.add_cascade(label="Exit", command=exit_app)
+menu_bar.add_cascade(label="Exit", command=exit_window)
 menu_bar.add_cascade(label="About", command=about)
 root.config(menu=menu_bar)
 
@@ -151,3 +163,8 @@ root.mainloop()
 # Update sound plugin as mp3player is not supported on python 3
 # Chcekmarks are cleared when a task is deleted
 # If no tasks.txt app does not launch, need to add a if pass statement
+
+# Optional features added:
+# Audio when task is complete / deleted
+# Export tasks into txt file
+# Load any saved tasks on startup
