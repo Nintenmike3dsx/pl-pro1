@@ -9,6 +9,9 @@ root.title("To-Do List")
 canvas = tk.Canvas(root, width=300, height=500) # Change if needed
 canvas.pack()
 
+#background_image = tk.PhotoImage(file="background.png")     Add back in later if possible
+#background_image_id = canvas.create_image(400, 400, image=background_image)
+
 font_size = 11
 
 tasks = []
@@ -17,12 +20,14 @@ taskdone = []
 task_location = tk.Frame(root)
 task_location.place(x=0, y=25)
 
+#Audio functions for when you check or delete a task
 def sound_check():
     winsound.PlaySound('yay.wav', winsound.SND_ASYNC)
 
 def sound_delete():
     winsound.PlaySound('gone.wav', winsound.SND_ASYNC)
 
+#Main loop for updating the list
 def updateloop():
     for widget in task_location.winfo_children():
         widget.destroy()
@@ -54,11 +59,13 @@ def delete_task(index):
     updateloop()
     # Buggggg - this removes any tasks that were currently checked as it loops everything, look into a solution later
 
+
+# Adding a task to the list
 def add_task_to_list():
     task = text_box.get()
     if task.strip():
         tasks.append(task.strip())
-        text_box.delete(0, tk.END)  # Clear box after user inputs
+        text_box.delete(0, 'end')  # Clear box after user inputs
         updateloop()  # Update list to show new task with checkbox and delete button
 
 def addtask():
