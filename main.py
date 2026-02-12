@@ -108,7 +108,7 @@ def exit_app():
     root.destroy()
 
 
-#
+# Button color function, see readme for source
 def buttoncolor(button, colorOnHover, colorOnLeave):
     button.bind("<Enter>", func=lambda e: button.config(background=colorOnHover))
     button.bind("<Leave>", func=lambda e: button.config(background=colorOnLeave))
