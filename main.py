@@ -6,7 +6,7 @@ import winsound
 root = tk.Tk()
 root.title("To-Do List")
 canvas = tk.Canvas(root, width=300, height=500) # Change if needed
-#root.resizable(True, False) # Like above change if needed
+root.resizable(False, False) # Like above change if needed
 canvas.pack()
 
 # Optional Enhancement 1 - button color
@@ -18,7 +18,7 @@ def buttoncolor(button, colorOnHover, colorOnLeave):
 #background_image_id = canvas.create_image(400, 400, image=background_image)
 
 # font_size = 11 not needed anymore
-tasks = []
+tasks = [] # Need to limit to 15
 taskdone = []
 
 task_location = tk.Frame(root)
@@ -71,6 +71,8 @@ def delete_task(index):
 # Adding a task to the list
 def add_task_to_list():
     task = text_box.get() # Store input
+    if len(tasks) >= 15:  # Limit of 15 tasks
+        return
     tasks.append(task) # Add to list
     text_box.delete(0, 'end') # Clear box after user inputs, test this more
     updateloop() # Run main loop to add it to the
