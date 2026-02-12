@@ -6,6 +6,7 @@ import winsound
 root = tk.Tk()
 root.title("To-Do List")
 canvas = tk.Canvas(root, width=300, height=500) # Change if needed
+#root.resizable(True, False) # Like above change if needed
 canvas.pack()
 
 # Optional Enhancement 1 - button color
@@ -47,7 +48,7 @@ def updateloop():
         else:
             var = tk.IntVar()
             taskdone.append(var)
-        checkbox = tk.Checkbutton(task_row, variable=var, command=sound_check) # added new audio
+        checkbox = tk.Checkbutton(task_row, variable=taskdone[i-1], command=sound_check) # added new audio
         checkbox.pack(side="left")
         
         # Middle - label
@@ -55,7 +56,7 @@ def updateloop():
         task_label.pack(side="left", padx=(5, 0))
         
         # Right side - delete
-        delete_button = tk.Button(task_row, text="Delete Task", command=lambda idx=i-1: delete_task(idx))
+        delete_button = tk.Button(task_row, text="Remove", command=lambda idx=i-1: delete_task(idx))
         delete_button.pack(side="right", padx=(0, 10))
 
 # Removes the task and re-runs the main updateloop 
@@ -69,11 +70,10 @@ def delete_task(index):
 
 # Adding a task to the list
 def add_task_to_list():
-    task = text_box.get()
-    if task.strip():
-        tasks.append(task.strip())
-        text_box.delete(0, 'end')  # Clear box after user inputs, test this more
-        updateloop()  # Update list to show new task with checkbox and delete button
+    task = text_box.get() # Store input
+    tasks.append(task) # Add to list
+    text_box.delete(0, 'end') # Clear box after user inputs, test this more
+    updateloop() # Run main loop to add it to the
 
 def addtask():
     global text_box
@@ -108,7 +108,7 @@ def load_tasks():
         updateloop()
     else:
         pass
-    # this is really simple, add a check for right file name later
+    # this is really simple, may want to add a file check prompt to user
 
 def about():
     about_window = tk.Toplevel(root)
@@ -129,7 +129,6 @@ def exit_window():
     label.pack(pady=10)
     close_button = tk.Button(text_window, text="Close Application", command=exit_app)
     close_button.pack(pady=10)
-
 
 def exit_app():
     root.destroy()
