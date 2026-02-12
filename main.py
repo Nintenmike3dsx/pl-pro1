@@ -114,6 +114,13 @@ def load_tasks():
         pass
     # this is really simple, may want to add a file check prompt to user
 
+def clear_data():
+    if os.path.exists("tasks.txt"):
+     os.remove("tasks.txt")
+    else:
+        pass
+
+
 def about():
     about_window = tk.Toplevel(root)
     about_window.title("About!")
@@ -136,27 +143,28 @@ def exit_window():
 
 def exit_app():
     root.destroy()
+    
 
 menu_bar = tk.Menu(root)
 
 add_task_button = tk.Button(root, text="Add Task", command=addtask, bg="SystemButtonFace")
 add_task_button.place(x=0, y=0)
-buttoncolor(add_task_button, "#FEEB3F", "SystemButtonFace")
+buttoncolor(add_task_button, "#CEBB0F", "SystemButtonFace")
 
 export_button = tk.Button(root, text="Save Tasks", command=save_tasks, bg="SystemButtonFace")
 export_button.place(x=110, y=0)
-buttoncolor(export_button, "#FE3F3F", "SystemButtonFace")
+buttoncolor(export_button, "#068831", "SystemButtonFace")
 
 import_button = tk.Button(root, text="Load Tasks", command=load_tasks, bg="SystemButtonFace")
 import_button.place(x=224, y=0)
-buttoncolor(import_button, "#FE3FE8", "SystemButtonFace")
+buttoncolor(import_button, "#553FFE", "SystemButtonFace")
 
 # Top menu bar
 menu_bar.add_cascade(label="Exit", command=exit_window)
 menu_bar.add_cascade(label="About", command=about)
+menu_bar.add_cascade(label="Clear Data", command=clear_data)
 root.config(menu=menu_bar)
 
-updateloop()
 load_tasks() # persistant storage will pull any tasks from the file, needs specific file / format
 root.mainloop()
 
