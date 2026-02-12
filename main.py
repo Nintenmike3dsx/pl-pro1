@@ -1,5 +1,6 @@
 # By Michael Arend - see readme for all sources
 import tkinter as tk
+import os
 import winsound
 
 root = tk.Tk()
@@ -96,13 +97,17 @@ def addtask():
     close_button.pack(pady=10)
 
 # Optional Enhancement 3 - Task exporting
-def export_tasks():
+def save_tasks():
     with open("tasks.txt", "w") as file:
         file.write("\n".join(tasks))
 
 # Optional Enhancement 4 - Task loading
-def import_tasks():
-    tasks[:] = open("tasks.txt").read().splitlines(); updateloop()
+def load_tasks():
+    if os.path.exists("tasks.txt"):
+        tasks[:] = open("tasks.txt").read().splitlines()
+        updateloop()
+    else:
+        pass
     # this is really simple, add a check for right file name later
 
 def about():
@@ -123,11 +128,11 @@ add_task_button = tk.Button(root, text="Add Task", command=addtask, bg="SystemBu
 add_task_button.place(x=0, y=0)
 buttoncolor(add_task_button, "#FEEB3F", "SystemButtonFace")
 
-export_button = tk.Button(root, text="Export Tasks", command=export_tasks, bg="SystemButtonFace")
+export_button = tk.Button(root, text="Save Tasks", command=save_tasks, bg="SystemButtonFace")
 export_button.place(x=110, y=0)
 buttoncolor(export_button, "#FE3F3F", "SystemButtonFace")
 
-import_button = tk.Button(root, text="Import Tasks", command=import_tasks, bg="SystemButtonFace")
+import_button = tk.Button(root, text="Load Tasks", command=load_tasks, bg="SystemButtonFace")
 import_button.place(x=224, y=0)
 buttoncolor(import_button, "#FE3FE8", "SystemButtonFace")
 
@@ -137,5 +142,10 @@ menu_bar.add_cascade(label="About", command=about)
 root.config(menu=menu_bar)
 
 updateloop()
-import_tasks() # this needs to be fixed as if the file is not there it doesnt load the app
+load_tasks() # persistant storage will pull any tasks from the file, needs specific file / format
 root.mainloop()
+
+# Bugs needing to be fixed:
+
+# Chcekmarks are cleared when a task is deleted
+# If no tasks.txt app does not launch, need to add a if pass statement
