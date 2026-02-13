@@ -118,9 +118,12 @@ def clear_data():
 
 def clear_data_button():
     if os.path.exists("tasks.txt"):
-       os.remove("tasks.txt")
+        os.remove("tasks.txt")
     else:
         pass
+    tasks.clear()
+    taskdone.clear()
+    updateloop()
 
 def about():
     about_window = tk.Toplevel(root)
