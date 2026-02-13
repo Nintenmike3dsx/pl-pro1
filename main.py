@@ -29,14 +29,15 @@ tasks = [] # Holds task name
 taskdone = [] # Holds is done/not done
 
 task_location = tk.Frame(root)
-task_location.place(x=0, y=25)
+tk.Label(task_location, text="To-Do:", font=("Helvetica", 12, "bold")).pack(anchor='w') # create header on boot
+task_location.place(x=0, y=25) # adjust later if needed
 
 #Main loop for updating the list
 def updateloop():
     # Refresh list
     for widget in task_location.winfo_children():
         widget.destroy()
-    # Create Header
+    # remake header after destroy
     tk.Label(task_location, text="To-Do:", font=("Helvetica", 12, "bold")).pack(anchor='w')
     # Maintain check state
     while len(taskdone) < len(tasks):
@@ -65,7 +66,7 @@ def add_task_to_list():
     if len(task) > 27:    # Limit of 27 characters for task name
         return
     tasks.append(task) # Add to list
-    text_box.delete(0, 'end') # Clear box after user inputs, test this more
+    text_box.delete(0, 'end') # Clear box after user inputs
     updateloop()
 
 # UI to add a task
