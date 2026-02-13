@@ -1,5 +1,16 @@
 Project 1 - Michael Arend
 
+Core Functions:
+Add tasks to a list
+Check off / delete tasks
+
+Optional features added:
+Audio when task is complete / deleted
+Button hover effects
+Export tasks into txt file
+Load saved tasks
+Delete saves tasks
+
 Sources:
 
 Tkinter widgets: https://www.geeksforgeeks.org/python/what-are-widgets-in-tkinter/

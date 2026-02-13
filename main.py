@@ -54,7 +54,7 @@ def updateloop():
 def delete_task(index):
     sound_delete()
     tasks.pop(index) # remove from list
-    taskdone.pop(index) # remove chek 
+    taskdone.pop(index) # remove check 
     updateloop()
 
 # Adding a task to the list
@@ -166,17 +166,3 @@ root.config(menu=menu_bar)
 
 load_tasks() # will pull tasks but if not formatted right will get odd results
 root.mainloop()
-
-# Bugs needing to be fixed:
-
-# Fix text not fully clearing
-# Update sound plugin as mp3player is not supported on python 3
-# Chcekmarks are cleared when a task is deleted
-# If no tasks.txt app does not launch, need to add a if pass statement
-
-# Optional features added:
-# Audio when task is complete / deleted
-# Button hover effects
-# Export tasks into txt file
-# Load any saved tasks on startup
-# Clear saved tasks.txt file 
