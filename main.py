@@ -25,8 +25,8 @@ def sound_delete():
 #background_image_id = canvas.create_image(400, 400, image=background_image)
 
 # font_size = 11 not needed anymore defined size individually
-tasks = [] # Need to limit to 15
-taskdone = []
+tasks = [] # Holds task name
+taskdone = [] # Holds is done/not done
 
 task_location = tk.Frame(root)
 task_location.place(x=0, y=25)
@@ -38,13 +38,13 @@ def updateloop():
         widget.destroy()
     # Create Header
     tk.Label(task_location, text="To-Do:", font=("Helvetica", 12, "bold")).pack(anchor='w')
-    # Maintain check state 
+    # Maintain check state
     while len(taskdone) < len(tasks):
         taskdone.append(tk.IntVar())
     # Create all task rows from task limit variable
     for i, task in enumerate(tasks):
         row = tk.Frame(task_location)
-        row.pack(fill='x', pady=1)  
+        row.pack(fill='x', pady=1)  # Adjust padding if needed later
         # Check mark / text / delete properties
         tk.Checkbutton(row, variable=taskdone[i], command=sound_check).pack(side='left')
         tk.Label(row, text=f"{i+1}. {task}", font=("Helvetica", 10)).pack(side='left', padx=5)
@@ -53,8 +53,8 @@ def updateloop():
 # Removes the task and re-runs the main updateloop 
 def delete_task(index):
     sound_delete()
-    tasks.pop(index)
-    taskdone.pop(index) 
+    tasks.pop(index) # remove from list
+    taskdone.pop(index) # remove chek 
     updateloop()
 
 # Adding a task to the list
