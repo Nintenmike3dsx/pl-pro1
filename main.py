@@ -96,7 +96,7 @@ def save_tasks():
     with open("tasks.txt", "w") as file:
         file.write("\n".join(tasks))
 
-# Optional Enhancement 4 - Task loading
+# Optional Enhancement 4 - Task loading 
 def load_tasks():
     if os.path.exists("tasks.txt"):
         tasks[:] = open("tasks.txt").read().splitlines()
