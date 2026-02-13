@@ -5,8 +5,8 @@ import winsound
 
 root = tk.Tk()
 root.title("To-Do List")
-canvas = tk.Canvas(root, width=300, height=500) # Change if needed
-root.resizable(False, False) # Like above change if needed
+canvas = tk.Canvas(root, width=300, height=500) # Change if needed for more than 15 tasks
+root.resizable(False, False) # Leave lock on x x axis, maybe unlock y if needed
 canvas.pack()
 
 # Optional Enhancement 1 - button color
@@ -14,22 +14,22 @@ def buttoncolor(button, colorOnHover, colorOnLeave):
     button.bind("<Enter>", func=lambda e: button.config(background=colorOnHover))
     button.bind("<Leave>", func=lambda e: button.config(background=colorOnLeave))
 
-#background_image = tk.PhotoImage(file="background.png")     Add back in later if possible
-#background_image_id = canvas.create_image(400, 400, image=background_image)
-
-# font_size = 11 not needed anymore
-tasks = [] # Need to limit to 15
-taskdone = []
-
-task_location = tk.Frame(root)
-task_location.place(x=0, y=25)
-
 # Optional Enhancement 2 - Button Audio
 def sound_check():
     winsound.PlaySound('yay.wav', winsound.SND_ASYNC)
 
 def sound_delete():
     winsound.PlaySound('gone.wav', winsound.SND_ASYNC)
+
+#background_image = tk.PhotoImage(file="background.png")     Add back in later if possible
+#background_image_id = canvas.create_image(400, 400, image=background_image)
+
+# font_size = 11 not needed anymore defined size individually
+tasks = [] # Need to limit to 15
+taskdone = []
+
+task_location = tk.Frame(root)
+task_location.place(x=0, y=25)
 
 #Main loop for updating the list
 def updateloop():
@@ -65,8 +65,6 @@ def delete_task(index):
     tasks.pop(index)
     taskdone.pop(index) 
     updateloop()
-    # Buggggg - this removes any tasks that were currently checked as it loops everything, look into a solution later
-
 
 # Adding a task to the list
 def add_task_to_list():
@@ -77,8 +75,9 @@ def add_task_to_list():
         return
     tasks.append(task) # Add to list
     text_box.delete(0, 'end') # Clear box after user inputs, test this more
-    updateloop() # Run main loop to add it to the
+    updateloop()
 
+# UI to add a task
 def addtask():
     global text_box
     text_window = tk.Toplevel(root)
@@ -143,9 +142,9 @@ def exit_window():
 
 def exit_app():
     root.destroy()
-    
-menu_bar = tk.Menu(root)
 
+# Button property code
+menu_bar = tk.Menu(root)
 add_task_button = tk.Button(root, text="Add Task", command=addtask, bg="SystemButtonFace")
 add_task_button.place(x=0, y=0)
 buttoncolor(add_task_button, "#CEBB0F", "SystemButtonFace")
@@ -164,7 +163,7 @@ menu_bar.add_cascade(label="About", command=about)
 menu_bar.add_cascade(label="Clear Data", command=clear_data)
 root.config(menu=menu_bar)
 
-load_tasks() # persistant storage will pull any tasks from the file, needs specific file / format
+load_tasks() # will pull tasks but if not formatted right will get odd results
 root.mainloop()
 
 # Bugs needing to be fixed:
@@ -176,5 +175,7 @@ root.mainloop()
 
 # Optional features added:
 # Audio when task is complete / deleted
+# Button hover effects
 # Export tasks into txt file
 # Load any saved tasks on startup
+# Clear saved tasks.txt file 
