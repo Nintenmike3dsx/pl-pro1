@@ -33,31 +33,22 @@ task_location.place(x=0, y=25)
 
 #Main loop for updating the list
 def updateloop():
+    # Refresh list
     for widget in task_location.winfo_children():
         widget.destroy()
-
-    # List properties - edit later with different font and sizes
-    tk.Label(task_location, text="Your Tasks:", font=("Helvetica", 12, "bold")).pack(anchor="w")
-    for i, task in enumerate(tasks, 1):
-        task_row = tk.Frame(task_location)  
-        task_row.pack(anchor="w", fill="x", pady=2)
-        
-        # Left side - checkbox
-        if i-1 < len(taskdone): #fix for bug that resets checkmarks when a task is deleted
-            var = taskdone[i-1]
-        else:
-            var = tk.IntVar()
-            taskdone.append(var)
-        checkbox = tk.Checkbutton(task_row, variable=taskdone[i-1], command=sound_check) # added new audio
-        checkbox.pack(side="left")
-        
-        # Middle - label
-        task_label = tk.Label(task_row, text=f"{i}. {task}", font=("Helvetica", 10), anchor="w")
-        task_label.pack(side="left", padx=(5, 0))
-        
-        # Right side - delete
-        delete_button = tk.Button(task_row, text="Remove", command=lambda idx=i-1: delete_task(idx))
-        delete_button.pack(side="right", padx=(0, 10))
+    # Create Header
+    tk.Label(task_location, text="To-Do:", font=("Helvetica", 12, "bold")).pack(anchor='w')
+    # Maintain check state 
+    while len(taskdone) < len(tasks):
+        taskdone.append(tk.IntVar())
+    # Create all task rows from task limit variable
+    for i, task in enumerate(tasks):
+        row = tk.Frame(task_location)
+        row.pack(fill='x', pady=1)  
+        # Check mark / text / delete properties
+        tk.Checkbutton(row, variable=taskdone[i], command=sound_check).pack(side='left')
+        tk.Label(row, text=f"{i+1}. {task}", font=("Helvetica", 10)).pack(side='left', padx=5)
+        tk.Button(row, text="Remove", command=lambda idx=i: delete_task(idx)).pack(side='right', padx=5)
 
 # Removes the task and re-runs the main updateloop 
 def delete_task(index):
@@ -132,7 +123,7 @@ def about():
 def exit_window():
     global text_box
     text_window = tk.Toplevel(root)
-    text_window.title("Are You Sure You Want to Close?")
+    text_window.title("Exit")
     text_window.geometry("200x100")
     
     label = tk.Label(text_window, text="Save Your Tasks Before Exiting!", font=("Helvetica", 10))
