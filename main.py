@@ -106,6 +106,16 @@ def load_tasks():
 
 # Optional Enhancement 5 - Data Clearing, will delete any existing tasks.txt
 def clear_data():
+    clear_data_window = tk.Toplevel(root)
+    clear_data_window.title("Caution!")
+    clear_data_window.geometry("350x100")
+    clear_data_window.resizable(False,False)
+    label = tk.Label(clear_data_window, text="THIS WILL PERMANENTLY YEET ALL SAVED TASKS!", font=("Helvetica", 10))
+    label.pack(pady=10)
+    clear_button = tk.Button(clear_data_window, text="DELETE DATA", command=clear_data_button)
+    clear_button.pack(pady=10)
+
+def clear_data_button():
     if os.path.exists("tasks.txt"):
        os.remove("tasks.txt")
     else:
