@@ -155,12 +155,8 @@ add_task_button.place(x=0, y=0)
 buttoncolor(add_task_button, "#CEBB0F", "SystemButtonFace")
 
 export_button = tk.Button(root, text="Save Tasks", command=save_tasks, bg="SystemButtonFace")
-export_button.place(x=110, y=0)
+export_button.place(x=235, y=0)
 buttoncolor(export_button, "#068831", "SystemButtonFace")
-
-import_button = tk.Button(root, text="Load Tasks", command=load_tasks, bg="SystemButtonFace")
-import_button.place(x=224, y=0)
-buttoncolor(import_button, "#553FFE", "SystemButtonFace")
 
 # Top menu bar
 menu_bar.add_cascade(label="Exit", command=exit_window)
