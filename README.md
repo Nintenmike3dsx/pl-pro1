@@ -1,15 +1,20 @@
 Project 1 - Michael Arend
 
 Core Functions:
+
 Add tasks to a list
+
 Check off / delete tasks
 
+Storage System
+
 Optional features added:
+
 Audio when task is complete / deleted
+
 Button hover effects
+
 Export tasks into txt file
-Load saved tasks
-Delete saves tasks
 
 Sources:
 
